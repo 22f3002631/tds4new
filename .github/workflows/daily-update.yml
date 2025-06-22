@@ -2,10 +2,8 @@ name: Daily Automated Update
 
 on:
   schedule:
-    # This workflow runs once every day at 00:00 (midnight UTC).
-    # You can adjust the hour and minute as needed.
     - cron: '0 0 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   daily_commit:
@@ -21,5 +19,5 @@ jobs:
           git config user.email "22f3002631@ds.study.iitm.ac.in"
           echo "$(date): Automated daily update" >> daily_update.log
           git add daily_update.log
-          git commit -m "Automated daily update: $(date)"
+          git commit -m "Automated daily update: $(date)" || echo "No changes to commit"
           git push
